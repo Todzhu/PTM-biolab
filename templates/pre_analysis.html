@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+
+{% block title %}初分析{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block contentTitle %}初分析平台{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active show" id="project">
+            <br>
+            <h3>项目信息：</h3>
+            <hr>
+            <form class="mt-md-3" action="{{ url_for('pre_analysis') }}" method="POST" enctype="multipart/form-data" name="form">
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>项目编号</label>
+                        <input type="text" class="form-control" placeholder="S8206TQ" name="projectId">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label>合同编号</label>
+                        <input type="text" class="form-control" placeholder="PTM20190101C01" name="contractId">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label>客户姓名</label>
+                        <input type="text" class="form-control" placeholder="王老师" name="customerName">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label>客户电话</label>
+                        <input type="text" class="form-control" placeholder="187654321" name="customerPhone">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>客户单位</label>
+                        <input type="text" class="form-control" placeholder="浙江大学附属医院" name="customerAddress">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>项目名称</label>
+                    <input type="text" class="form-control" placeholder="1024个TMT磷酸化修饰蛋白质组学分析报告" name="projectName">
+                </div>
+
+                <br>
+                <h3>联系方式：</h3>
+                <hr>
+
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>客户代表姓名</label>
+                        <input type="text" class="form-control" placeholder="客户代表" name="sales">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label>客户代表电话</label>
+                        <input type="text" class="form-control" placeholder="187654321" name="salesPhone">
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label>客户代表邮箱</label>
+                        <input type="text" class="form-control" placeholder="sales@ptm-biolab.com" name="salesEmail">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="labelType">技术支持：</label>
+                        <select class="form-control" id="labelType" name="technicalSupport" onchange="ch();">
+                            <option>茆璇</option>
+                            <option>李晓梅</option>
+                            <option>秦丽欢</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="labelType">电话号码：</label>
+                        <select class="form-control" id="labelType" name="technicalPhone" onchange="ch();">
+                            <option>0571-28833567-8049</option>
+                            <option>0571-28833567-8049</option>
+                            <option>0571-28833567-8003</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="labelType">邮箱地址：</label>
+                        <select class="form-control" id="labelType" name="technicalEmail" onchange="ch();">
+                            <option>xuan_mao@ptm-biolab.com</option>
+                            <option>xiaomei_li@ptm-biolab.com</option>
+                            <option>lihuan_qin@ptm-biolab.com</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+                <h3>实验方法：</h3>
+                <hr>
+                <h4>材料与试剂：</h4>
+
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="shiji" value="标记试剂盒 | Thermo">标记试剂盒 | Thermo
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="shiji" value="蛋白酶抑制剂 | Calbiochem">蛋白酶抑制剂 | Calbiochem
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="shiji" value="烟酰胺（NAM） | Sigma">烟酰胺（NAM）| Sigma
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="shiji" value="曲古抑菌素A（TSA） | Sigma">曲古抑菌素A（TSA）| Sigma
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="shiji" value="PR-619 | Sigma">PR-619 | Sigma
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="shiji" value="三氯乙酸（trichloroacetic acid） | Sigma">三氯乙酸（trichloroacetic acid）| Sigma
+                    </label>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" name="shiji" value="磷酸化酶抑制剂 | millipore">磷酸化酶抑制剂 | millipore
+                    </label>
+                </div>
+
+                <br>
+                <div class="form-group">
+                    <label for="exampleTextarea">样品标记信息</label>
+                    <textarea class="form-control" placeholder="CK-WT 126" style="margin-top: 0px; margin-bottom: 0px; height: 114px; width: 400px;" name="Samplelabel"></textarea>
+                </div>
+                <br>
+                <h4>蛋白提取方法：</h4>
+                <div class="form-group">
+                    <select class="form-control" name="sampleType" onchange="inputText();">
+                        <option>选择样品类型</option>
+                        <option>细胞类样品</option>
+                        <option>动物组织</option>
+                        <option>植物组织</option>
+                        <option>植物组织（酚抽法）</option>
+                        <option>血清样品</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 114px;" name="ProtExtract">请选择样品类型...</textarea>
+                </div>
+
+                <h4>胰酶酶解：</h4>
+                <div class="form-group">
+                    <textarea class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 80px;" name="Enzymetext">蛋白溶液中加入二硫苏糖醇使其终浓度为5 mM，56 °C还原30 min。之后加入碘代乙酰胺使其终浓度为11 mM，室温避光孵育15 min。最后将样品的尿素浓度稀释至低于2 M。以1:50的质量比例（胰酶：蛋白）加入胰酶，37 °C酶解过夜。再以1:100的质量比例（胰酶：蛋白）加入胰酶，继续酶解4 h。</textarea>
+                </div>
+
+                <br>
+                <h4>质谱方法：</h4>
+                <hr>
+
+                <h4>HPLC分级：</h4>
+                <div class="form-group">
+                    <textarea class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 80px;" name="HPLC">肽段用高pH反向HPLC分级，色谱柱为Agilent 300Extend C18（5 μm粒径，4.6 mm 内径，250 mm长）。操作如下：肽段分级梯度为8%-32%乙腈、pH 9，60 min时间分离60个组分，随后肽段合并为18个组分，合并后的组分经真空冷冻干燥后进行后续操作。</textarea>
+                </div>
+
+                <h4>修饰富集：</h4>
+                <div class="form-group">
+                    <select class="form-control" name="Modenrich" onchange="inputText();">
+                        <option>无</option>
+                        <option>基于抗体的修饰富集</option>
+                        <option>基于材料的磷酸化富集</option>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 114px;" name="Modenrichtext">无</textarea>
+                </div>
+
+                <h4>液相色谱-质谱联用分析：</h4>
+                <div class="form-group">
+                    <textarea class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 80px;" name="HPLC-MS-1">肽段用液相色谱流动相A相（0.1% (v/v) 甲酸水溶液）溶解后使用EASY-nLC 1000超高效液相系统进行分离。流动相A为含0.1%甲酸和2%乙腈的水溶液；流动相B为含0.1%甲酸和90%乙腈的水溶液。液相梯度设置：0-26 min，6%~23%B；26-34 min，23%~35%B；34-37 min，35%~80%B；37-40 min，80%B，流速维持在400 nL/min。</textarea>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 140px;" name="HPLC-MS-2">肽段经由超高效液相系统分离后被注入NSI离子源中进行电离然后进Q ExactiveTM Plus质谱进行分析。离子源电压设置为2.0 kV，肽段母离子及其二级碎片都使用高分辨的Orbitrap进行检测和分析。一级质谱扫描范围设置为350-1800 m/z，扫描分辨率设置为70,000；二级质谱扫描范围则固定起点为100 m/z，二级扫描分辨率设置为17,500。数据采集模式使用数据依赖型扫描（DDA）程序，即在一级扫描后选择信号强度最高的前20肽段母离子依次进入HCD碰撞池使用30%的碎裂能量进行碎裂，同样依次进行二级质谱分析。为了提高质谱的有效利用率，自动增益控制（AGC）设置为5E4，信号阈值设置为10000 ions/s，最大注入时间设置为200 ms，串联质谱扫描的动态排除时间设置为30秒避免母离子的重复扫描。</textarea>
+                </div>
+
+                <br>
+                <h3>数据库搜库参数：</h3>
+                <hr>
+
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label>蛋白库名称</label>
+                        <input type="text" class="form-control" placeholder="human_uniprot_1804" name="dataBase">
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label>蛋白库序列数目</label>
+                        <input type="text" class="form-control" placeholder="25596" name="databaseCounts">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="sel2">可变修饰：</label>
+
+                        <select multiple class="form-control" id="sel2" name="variableModification">
+                            <option>甲硫氨酸的氧化</option>
+                            <option>蛋白N端的乙酰化</option>
+                            <option>赖氨酸的乙酰化/丝氨酸</option>
+                            <option>丝氨酸、苏氨酸和酪氨酸的磷酸化</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="Quantification">标记定量方法：</label>
+                        <select class="form-control" id="Quantification" name="quantificationMethod">
+                            <option>TMT-6plex</option>
+                            <option>TMT-8plex</option>
+                            <option>TMT-10plex</option>
+                            <option>TMT-11plex</option>
+                            <option>无标签</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">提交任务</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" language="javascript">
+    function inputText() {
+        var cell = '样品从－80 °C取出，分别加入4倍体积裂解缓冲液（8 M尿素，1%蛋白酶抑制剂，3 μM TSA，50 mM NAM和2 mM EDTA），超声裂解。4 °C，12000 g离心10 min，去除细胞碎片，上清液转移至新的离心管，利用BCA试剂盒进行蛋白浓度测定。';
+        var animal = '样品从－80 °C取出，称取适量组织样品至液氮预冷的研钵中，加液氮充分研磨至粉末。各组样品分别加入粉末4倍体积裂解缓冲液（8 M尿素，1%蛋白酶抑制剂，3 μM TSA，50 mM NAM和2 mM EDTA），超声裂解。4 °C，12000 g离心10 min，去除细胞碎片，上清液转移至新的离心管，利用BCA试剂盒进行蛋白浓度测定。';
+        var plant = '样品从－80 °C取出，称取适量组织样品至液氮预冷的研钵中，加液氮充分研磨至粉末。各组样品分别加入粉末4倍体积裂解缓冲液（8 M尿素，1% TritonX-100，10 mM二硫苏糖醇，1%蛋白酶抑制剂，3 μM TSA，50 mM NAM和2 mM EDTA），超声裂解。4 °C，20000 g离心10 min，取上清并加入终浓度为20%的三氯乙酸，4 °C静置2 h。4 °C，12000 g离心3 min，弃上清，沉淀用预冷的丙酮洗涤三次。最后沉淀用8 M尿素复溶，利用BCA 试剂盒进行蛋白浓度测定。';
+        var plantFen = '样品从－80 °C取出，称取适量组织样品至液氮预冷的研钵中，加液氮充分研磨至粉末。各组样品分别加入粉末4倍体积酚抽提缓冲液（含10 mM二硫苏糖醇，1%蛋白酶抑制剂，1%去磷酸化酶抑制剂，50 μM PR-619，3 μM TSA，50 mM NAM和2 mM EDTA），超声裂解。加入等体积的Tris平衡酚，4 °C，5500 g离心10 min，取上清并加入5倍体积的0.1 M乙酸铵/甲醇沉淀过夜，蛋白沉淀分别用甲醇和丙酮进行洗涤。最后沉淀用8 M尿素复溶，利用BCA 试剂盒进行蛋白浓度测定。';
+        var xueqing = '样品从－80 °C取出，4 °C，12000 g离心10分钟，去除细胞碎片，上清液转移至新的离心管，用Thermo公司生产的试剂盒参照Pierce™ Top 12 Abundant Protein Depletion Spin Columns Kit说明书去除高丰度蛋白。利用BCA 试剂盒进行蛋白浓度测定。';
+
+        var sampletype = form.sampleType.value;
+
+        if (sampletype == '细胞类样品') {
+            form.ProtExtract.value = cell;
+        }
+        if (sampletype == '动物组织') {
+            form.ProtExtract.value = animal;
+        }
+        if (sampletype == '植物组织') {
+            form.ProtExtract.value = plant;
+        }
+        if (sampletype == '植物组织（酚抽法）') {
+            form.ProtExtract.value = plantFen;
+        }
+        if (sampletype == '血清样品') {
+            form.ProtExtract.value = xueqing;
+        }
+        if (sampletype == '选择样品类型') {
+            form.ProtExtract.value = '请选择样品类型...';
+        }
+
+        enrich = form.Modenrich.value;
+        var enrichMethod1 = '将肽段溶解在IP缓冲溶液中（100 mM NaCl, 1 mM EDTA, 50 mM Tris-HCl, 0.5% NP-40, pH 8.0)，转移上清液至提前洗涤好的   化树脂中（抗体树脂货号PTM1001，来源于杭州景杰生物科技有限公司，PTM Bio），放置于4 ℃ 环境的旋转摇床上，温和摇晃并过夜孵育。孵育结束后依次使用IP缓冲溶液洗涤树脂4次，去离子水洗涤两次。最后使用0.1%三氟乙酸洗脱液，将树脂结合的肽段洗脱下来，共洗脱三次，收集洗脱液并真空冷冻抽干。抽干后按照C18 ZipTips说明书除盐，真空冷冻抽干后供液质联用分析。';
+        var enrichMethod2 = '将肽段溶解在富集缓冲溶液中（50%乙腈/6%三氟乙酸)，转移上清液至提前洗涤好的IMAC材料中，放置于旋转摇床上温和摇晃孵育。孵育结束后依次使用缓冲溶液50% 乙腈/6%三氟乙酸和30%乙腈/0.1%三氟乙酸洗涤树脂3次。最后使用10%氨水洗脱修饰肽段，收集洗脱液并真空冷冻抽干。抽干后按照C18 ZipTips说明书除盐，真空冷冻抽干后供液质联用分析。';
+
+        if (enrich == '基于抗体的修饰富集') {
+            form.Modenrichtext.value = enrichMethod1;
+        }
+        if (enrich == '基于材料的磷酸化富集') {
+            form.Modenrichtext.value = enrichMethod2;
+        }
+        if (enrich == '无') {
+            form.Modenrichtext.value = '无';
+        }
+    }
+
+    function ch() {
+        var index = document.form.technicalSupport.selectedIndex;
+        document.form.technicalPhone.selectedIndex = index;
+        document.form.technicalEmail.selectedIndex = index;
+    }
+</script>
+
+
+
+{% endblock %}

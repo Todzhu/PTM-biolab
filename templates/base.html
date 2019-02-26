@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>PTM-BioInfo-{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="/static/css/bootstrap-4.1.0.min.css">
+        <link rel="stylesheet" href="/static/css/bootstrap-table.css">
+        <script src="/static/js/jquery-3.2.1.min.js"></script>
+        <script src="/static/js/popper-1.12.5.min.js"></script>
+        <script src="/static/js/bootstrap-4.1.0.min.js"></script>
+        <script src="/static/js/bootstrap-table.min.js"></script>
+    {% endblock %}
+</head>
+
+<body>
+
+{% block navbar %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
+        <a class="navbar-brand" href="http://www.ptm-biolab.com.cn/" style="color: #9fcdff">PTM-BioInfo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">首页 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('pre_analysis') }}">初分析</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('stand_analysis') }}">标准分析</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('project_manage') }}">数据管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('project_query') }}">项目查询</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="masthead" style="margin-top: 60px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <h2>{% block contentTitle %}{% endblock %}</h2>
+                    <p class="lead">内测版 V1.0</p>
+                </div>
+
+                <div class="col-md-5">
+                    <div class="well well-lg">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <img src="/static/ptm_logo.png" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+
+
+{% endblock %}
+
+
+
+<script>
+     $('.navbar-nav').find('a').each(function () {
+            if (this.href == document.location.href) {
+                $(this).parent().addClass('active'); // this.className = 'active';
+            }
+        });
+</script>
+
+
+
+
+
+
+</body>
+</html>
